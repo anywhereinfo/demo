@@ -19,7 +19,7 @@ public class CarController {
 
         @RequestMapping(method = RequestMethod.POST, consumes = {"application/json"})
         @ResponseStatus(HttpStatus.ACCEPTED)
-        public void saveCar(@RequestBody String car, 
+        public void saveCar(@RequestBody Car car, 
         					@RequestHeader(HttpHeaders.CONTENT_TYPE) String contentType) {
         	sender.sendCar(car, contentType);
         }

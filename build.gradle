@@ -10,6 +10,7 @@ buildscript {
 	}
 }
 
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
@@ -31,6 +32,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-configuration-processor')
 	compile('org.springframework.cloud:spring-cloud-stream')
+	compile('org.apache.avro:avro:1.8.1')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
