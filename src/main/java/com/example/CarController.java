@@ -1,8 +1,10 @@
 package com.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -17,8 +19,9 @@ public class CarController {
 
         @RequestMapping(method = RequestMethod.POST, consumes = {"application/json"})
         @ResponseStatus(HttpStatus.ACCEPTED)
-        public void saveCar(@RequestBody Car car) {
-        	sender.sendCar(car);
+        public void saveCar(@RequestBody String car, 
+        					@RequestHeader(HttpHeaders.CONTENT_TYPE) String contentType) {
+        	sender.sendCar(car, contentType);
         }
 
 

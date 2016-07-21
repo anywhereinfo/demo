@@ -20,14 +20,9 @@ public class CarSender {
     @Autowired
     ObjectMapper mapper;
 	
-    public void sendCar(Car car) {
-        String jsonCar = "";
-        try {
-                jsonCar = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(car);
-        } catch (Exception ex) {}
-
-        Message<?> message = MessageBuilder.withPayload(jsonCar)
-				.setHeader(MessageHeaders.CONTENT_TYPE, "application/json")
+    public void sendCar(String car, String contentType) {
+    	Message<?> message = MessageBuilder.withPayload(car)
+				.setHeader(MessageHeaders.CONTENT_TYPE, contentType)
 				.build();
         System.out.println(message);
         output.output().send(message);  
