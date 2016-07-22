@@ -23,4 +23,5 @@ The websockets endpoint for protocol upgrade is `/websocket`
 ![alt websockets to kafka and back](Slide3.jpg)
 
 To compile the application, cd to the application root folder and issue : `./gradlew build`
+
 To run the application: `java -jar build/libs/demo-0.0.1-SNAPSHOT.jar` 
