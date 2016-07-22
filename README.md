@@ -2,7 +2,9 @@
 
 ##Objectives
 *Demonstrate microservices connected via Kafka
+
 *Demonstrate schema evolution via AVRO
+
 *Demonstrate bi-directional messages from websockets to kafka and vice-versa
 
 The app exposes a `/cars` REST endpoint capable of receiving a JSON message via HTTP POST. Below example, shows POST via curl and the car schema
