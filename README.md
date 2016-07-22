@@ -20,6 +20,14 @@ Avro was chosen primarily due to schema evolution features.
 
 To demonstrate bi-directional messages from websockets, a user-agent sends carIDs(aka activity event) that it would like to track via websockets to a destination "/app/activity" and the user-agent subscribes to a topic called "/topic/tracker". On server side, the server timestamp is added to every activity event and message is routed to a kafka topic called "cartracker". Then a java component subscribes to the "cartracker" topic and dispatches the event to SimpleMessageRouter,which in turn broadcasts the message to all subscribed user-agents.
 
+To access UI for websockets: 
+
+* Direct your browser to `http://localhost:8080/index.html`
+* Press connect
+* Send car identifier
+* Browser displays the message from kafka
+
+
 The websockets endpoint for protocol upgrade is `/websocket`
 
 ![alt websockets to kafka and back](Slide3.jpg)
