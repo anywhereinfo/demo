@@ -26,6 +26,9 @@ repositories {
 	mavenCentral()
 }
 
+bootRepackage {
+   mainClass = 'com.example.DemoApplication'
+}
 
 dependencies {
 	compile('org.springframework.cloud:spring-cloud-starter-stream-kafka')
@@ -33,6 +36,10 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-configuration-processor')
 	compile('org.springframework.cloud:spring-cloud-stream')
 	compile('org.apache.avro:avro:1.8.1')
+	compile ('org.springframework.boot:spring-boot-starter-websocket')
+	compile('org.springframework:spring-messaging')
+	compile ('org.springframework.boot:spring-boot-starter-logging')
+	compile ("javax.inject:javax.inject:1")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

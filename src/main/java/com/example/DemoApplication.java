@@ -13,18 +13,5 @@ public class DemoApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
-	}
-	
-
-	/**
-	@StreamListener(ChannelDefinition.topic)
-	public void readCars(Car message) {
-        String jsonCar = "";
-        try {
-                jsonCar = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(message);
-        } catch (Exception ex) {}
-        
-		System.out.println(jsonCar);
-    }
-**/
+	}	
 }
