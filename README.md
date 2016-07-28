@@ -34,4 +34,13 @@ The websockets endpoint for protocol upgrade is `/websocket`
 
 To compile the application, cd to the application root folder and issue : `./gradlew build`
 
-To run the application: `java -jar build/libs/demo-0.0.1-SNAPSHOT.jar` 
+To run the application: 
+* ** If you are not running docker version, first start zookeeper and kafka. Then run the application via command `java -jar build/libs/demo-0.0.1-SNAPSHOT.jar`**
+
+* ** If you are running via docker, simply issue: `docker-compose up --build`. This will start one container for zookeeper, other for kafka and yet another for demo application.**
+
+* **To view docker images: `docker images`**
+
+* **To view docker containers: `docker ps -a`**
+
+* **You can run each docker image as standalone and get access to bash shell to view environment variables. Another way to view environment variables for running containers is through the command `docker inspect --format '{{ .Config.Env }}'`**
