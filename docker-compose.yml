@@ -30,6 +30,7 @@ services:
     build:
       context: .
       dockerfile: src/main/docker/Dockerfile
+    image: anywhereinfo/spring-kafka-demo
     ports:
       - "8080:8080"
     links:
@@ -41,6 +42,7 @@ services:
     depends_on:
       - kafka
       - zookeeper
+    container_name: spring-kafka-demo
     networks:
       - prodnetwork
 
