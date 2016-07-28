@@ -1,0 +1,48 @@
+version: '2'
+
+networks:
+  prodnetwork:
+    driver: bridge
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      - prodnetwork
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    links:
+      - zookeeper:zk
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - zookeeper
+    networks:
+      - prodnetwork
+  demo:
+    build:
+      context: .
+      dockerfile: src/main/docker/Dockerfile
+    ports:
+      - "8080:8080"
+    links:
+      - kafka:kafka
+      - zookeeper:zk
+    environment:
+      SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: 192.168.99.100:9092
+      SPRING_CLOUD_STREAM_KAFKA_BINDER_ZKNODES: 192.168.99.100:2181
+    depends_on:
+      - kafka
+      - zookeeper
+    networks:
+      - prodnetwork
+
+      
+      

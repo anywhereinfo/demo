@@ -1,0 +1,13 @@
+{
+  "namespace" : "com.example.domain",
+  "type" : "record",
+  "name" : "AvroCar2",
+  "fields" : [
+    {"name":"id","type":"string"},
+    {"name":"manufacturerYear", "type":"int", "default":0, "aliases" : ["year"]},
+    {"name":"make", "type":"string"},
+    {"name":"model","type":"string"},
+    {"name" : "review", "type" : "string" }
+  ]
+
+}

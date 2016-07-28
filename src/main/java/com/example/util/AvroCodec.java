@@ -51,7 +51,11 @@ public class AvroCodec implements Codec{
 
 	@Override
 	public <T> T decode(byte[] bytes, Class<T> type) throws IOException {
-		Schema schema = getSchema(new AvroCar());
+		Schema schema = null;
+		try {
+			schema = getSchema(type.newInstance());
+		} catch (Exception ex) {ex.printStackTrace();}
+				
 		DatumReader reader = getDatumReader(type,schema);
 		Decoder decoder = DecoderFactory.get().binaryDecoder(bytes,null);
 		return (T) reader.read(null,decoder);
