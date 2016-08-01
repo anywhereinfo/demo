@@ -11,8 +11,6 @@ buildscript {
 	}
 }
 
-group = 'anywhereinfo'
-
 /*
 plugins {
     id "com.commercehub.gradle.plugin.avro" version "0.9.0"
@@ -79,15 +77,17 @@ eclipse {
 		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
 	}
 	
-task buildDocker(type: Docker, dependsOn: build) {
-  push = false
-  applicationName = jar.baseName
-  dockerfile = file('src/main/docker/Dockerfile')
-  doFirst {
-    copy {
-      from jar
-      into stageDir
-    }
-  }
-  }
+task buildDocker(type: Docker) {
+  	push = project.hasProperty('push')
+  	tag = 'anywhereinfo/demo'
+  	dockerfile = file('src/main/docker/Dockerfile')
+  	doFirst {
+    	copy {
+      			from jar
+      			into stageDir
+    			}
+  			}
+  	}
+  	
+  	buildDocker.dependsOn(build)
 }

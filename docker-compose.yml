@@ -16,29 +16,28 @@ services:
     ports:
       - "9092:9092"
     links:
-      - zookeeper:zk
+      - zookeeper:zookeeper
     environment:
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_BROKER_ID: 0
       KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181      
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+        - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - zookeeper
     networks:
       - prodnetwork
   demo:
-    build:
-      context: .
-      dockerfile: src/main/docker/Dockerfile
-    image: anywhereinfo/spring-kafka-demo
+    image: anywhereinfo/demo
     ports:
       - "8080:8080"
     links:
       - kafka:kafka
-      - zookeeper:zk
+      - zookeeper:zookeeper
     environment:
-      SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: 192.168.99.100:9092
-      SPRING_CLOUD_STREAM_KAFKA_BINDER_ZKNODES: 192.168.99.100:2181
+      SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: kafka:9092
+      SPRING_CLOUD_STREAM_KAFKA_BINDER_ZKNODES: zookeeper:2181
     depends_on:
       - kafka
       - zookeeper

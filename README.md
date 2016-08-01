@@ -9,7 +9,9 @@
 
 The app exposes a `/cars` REST endpoint capable of receiving a JSON message via HTTP POST. Below example, shows POST via curl and the car schema
 
-`curl -i -H "Content-Type: application/json" -X POST -d '{"year":"2014","make":"toyota19","model":"something cool","engine":"2.67"}' http://localhost:8080/cars`
+`curl -i -H "Content-Type: application/json" -X POST -d '{"year":"2014","make":"toyota19","model":"something cool","engine":"2.67"}' http://<<DOCKER_HOST_IP>>:8080/cars`
+
+In my case, i am running docker-machine on OS X, hence the typical DOCKER_HOST_IP would be 192.168.99.100. If you are running docker directly on linux, it would probably be 127.0.0.1
  
 The REST endpoint in turn publishes the AVRO version of that message to the kafka topic called "avroautos".
 Another service, picks up the AVRO message and logs it to the console in JSON format. 
@@ -22,7 +24,7 @@ To demonstrate bi-directional messages from websockets, a user-agent sends carID
 
 To access UI for websockets: 
 
-* Direct your browser to `http://localhost:8080/index.html`
+* Direct your browser to `http://<<DOCKER_HOST_IP>>:8080/index.html`
 * Press connect
 * Send car identifier
 * Browser displays the message from kafka
