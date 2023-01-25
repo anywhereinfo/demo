@@ -46,3 +46,4 @@ To run the application:
 * To view docker containers: **`docker ps -a`**
 
 * You can run each docker image as standalone and get access to bash shell to view environment variables. Another way to view environment variables for running containers is through the command **`docker inspect --format '{{ .Config.Env }}'`**
+Test
